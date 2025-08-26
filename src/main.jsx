@@ -1,10 +1,13 @@
-import { StrictMode } from 'react';
+//import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+import { Blog } from './blog';
 import './index.css';
-import { App } from './App.jsx';
 
 createRoot(document.getElementById('root')).render(
-    <StrictMode>
-        <App />
-    </StrictMode>,
+    //<StrictMode> // https://vladilen.ru/pl/teach/control/lesson/view?id=302435031
+    <BrowserRouter>
+        <Blog />
+    </BrowserRouter>,
+    //</StrictMode>,
 );
