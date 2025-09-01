@@ -39,16 +39,16 @@ export const server = {
     //Сервис регистрации
     async register(regLogin, regPassword) {
         //Зпрос с сервера пользователя
-        const user = await getUser(regLogin);
+        const existedUser = await getUser(regLogin);
         //Проверка наличия пользователя в БД
-        if (user) {
+        if (existedUser) {
             return {
                 error: 'Логин занят',
                 res: null,
             };
         }
 
-        await addUser(regLogin, regPassword);
+        const user = await addUser(regLogin, regPassword);
 
         //Успешная регистрация
         return {
