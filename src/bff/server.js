@@ -1,9 +1,12 @@
 import { getUser } from './get-user';
 import { addUser } from './add-user';
-import { createSession } from './create-session';
+import { sessions } from './sessions';
 
 export const server = {
     // Сервис авторизации
+    async logout(session) {
+        sessions.remove(session);
+    },
     async authorize(authLogin, authPassword) {
         //Зпрос с сервера пользователя
         const user = await getUser(authLogin);
@@ -22,9 +25,15 @@ export const server = {
             };
         }
         //Успешная авторизация
+
         return {
             error: null,
-            res: createSession(user.role_id),
+            res: {
+                id: user.id,
+                login: user.login,
+                roleId: user.role_id,
+                session: sessions.create(user),
+            },
         };
     },
     //Сервис регистрации
@@ -44,7 +53,12 @@ export const server = {
         //Успешная регистрация
         return {
             error: null,
-            res: createSession(user.role_id),
+            res: {
+                id: user.id,
+                login: user.login,
+                roleId: user.role_id,
+                session: sessions.create(user),
+            },
         };
     },
 };
