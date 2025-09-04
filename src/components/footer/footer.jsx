@@ -12,7 +12,6 @@ const FooterContainer = ({ className }) => {
         )
             .then((res) => res.json())
             .then(({ name, main, weather }) => {
-                console.log(name);
                 setSity(name);
                 setTemperature(Math.round(main.temp));
                 setWeather(weather[0].description);
