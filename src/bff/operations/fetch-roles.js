@@ -3,12 +3,13 @@ import { getRoles } from '../api';
 import { sessions } from '../sessions';
 
 //Запрос ролей
-export const fetchRoles = async (userSession) => {
+export const fetchRoles = async (hash) => {
     //Зпрос с сервера пользователя
     //const existedUser = await getUser(regLogin);
     const accessRoles = [ROLE.ADMIN];
     //Проверка наличия пользователя в БД
-    if (!sessions.access(userSession, accessRoles)) {
+    const access = await sessions.access(hash, accessRoles);
+    if (!access) {
         return {
             error: 'Доступ запрещен',
             res: null,
