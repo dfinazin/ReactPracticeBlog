@@ -161,6 +161,27 @@
       "post_id": "001",
       "published_at": "2043-10-28 15:38",
       "content": "Новый комментарий"
+    },
+    {
+      "id": "d14e",
+      "author_id": "0",
+      "post_id": "002",
+      "published_at": "2061-10-07 15:23",
+      "content": "qwdqwefwcg"
+    },
+    {
+      "id": "d078",
+      "author_id": "0",
+      "post_id": "002",
+      "published_at": "2059-03-11 20:44",
+      "content": "lkwnflnwernv;wvn\nw'erlmkw;\nwreg\nwl"
+    },
+    {
+      "id": "eff8",
+      "author_id": "0",
+      "post_id": "002",
+      "published_at": "2033-10-16 19:45",
+      "content": "wrergwgwvw"
     }
   ],
   "sessions": [
@@ -233,6 +254,17 @@
     {
       "id": "f029",
       "hash": "0.91524059423480441655129880018648691475391387939453",
+      "user": {
+        "id": "0",
+        "login": "anton",
+        "password": "qwerty123",
+        "registredAt": "2025-10-22",
+        "roleId": 0
+      }
+    },
+    {
+      "id": "8f71",
+      "hash": "0.17817065739256732204154332066536881029605865478516",
       "user": {
         "id": "0",
         "login": "anton",
