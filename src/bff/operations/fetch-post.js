@@ -2,7 +2,19 @@ import { getPost, getComments, getUsers } from '../api';
 
 //Запрос ролей
 export const fetchPost = async (postId) => {
-    const post = await getPost(postId);
+    let post, error;
+    try {
+        post = await getPost(postId);
+    } catch (postError) {
+        error = postError;
+    }
+    if (error) {
+        return {
+            error,
+            res: null,
+        };
+    }
+
     //Успешная регистрация
 
     const comments = await getComments(postId);

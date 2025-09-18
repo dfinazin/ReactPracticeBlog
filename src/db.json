@@ -272,6 +272,17 @@
         "registredAt": "2025-10-22",
         "roleId": 0
       }
+    },
+    {
+      "hash": "0.59716260054558012448921999748563393950462341308594",
+      "user": {
+        "id": "0",
+        "login": "anton",
+        "password": "qwerty123",
+        "registredAt": "2025-10-22",
+        "roleId": 0
+      },
+      "id": "RRfRmql"
     }
   ]
 }
