@@ -1,14 +1,19 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Icon } from '../../../../components';
 import { CLOSE_MODAL, openModal, removePostAsync } from '../../../../actions';
 import { useServerRequest } from '../../../../hooks';
+import { checkAccess } from '../../../../utils';
+import { selectUserRole } from '../../../../selectors';
 import styled from 'styled-components';
+import { ROLE } from '../../../../constants';
 
 const SpecialPanelContainer = ({ className, id, publishedAt, editButton }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const requestServer = useServerRequest();
+    const userRole = useSelector(selectUserRole);
+
     const onPostRemove = (id) => {
         dispatch(
             openModal({
@@ -23,6 +28,9 @@ const SpecialPanelContainer = ({ className, id, publishedAt, editButton }) => {
             }),
         );
     };
+
+    const isAdmin = checkAccess([ROLE.ADMIN], userRole);
+
     return (
         <div className={className}>
             <div className="published-at">
@@ -36,17 +44,19 @@ const SpecialPanelContainer = ({ className, id, publishedAt, editButton }) => {
                 )}
                 {publishedAt}
             </div>
-            <div className="buttons-panel">
-                {editButton}
-                {publishedAt && (
-                    <Icon
-                        id="fa-trash-o"
-                        size="21px"
-                        margin="0px 0px 0px 7px"
-                        onClick={() => onPostRemove(id)}
-                    />
-                )}
-            </div>
+            {isAdmin && (
+                <div className="buttons-panel">
+                    {editButton}
+                    {publishedAt && (
+                        <Icon
+                            id="fa-trash-o"
+                            size="21px"
+                            margin="0px 0px 0px 7px"
+                            onClick={() => onPostRemove(id)}
+                        />
+                    )}
+                </div>
+            )}
         </div>
     );
 };

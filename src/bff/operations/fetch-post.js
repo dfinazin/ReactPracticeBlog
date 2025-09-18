@@ -1,4 +1,5 @@
-import { getPost, getComments, getUsers } from '../api';
+import { getPost } from '../api';
+import { getPostCommentsWithAuthor } from '../utils';
 
 //Запрос ролей
 export const fetchPost = async (postId) => {
@@ -17,15 +18,8 @@ export const fetchPost = async (postId) => {
 
     //Успешная регистрация
 
-    const comments = await getComments(postId);
-    const users = await getUsers();
-    const commentsWithAuthor = comments.map((comment) => {
-        const user = users.find(({ id }) => id === comment.authorId);
-        return {
-            ...comment,
-            author: user?.login,
-        };
-    });
+    const commentsWithAuthor = await getPostCommentsWithAuthor(postId);
+
     return {
         error: null,
         res: {
