@@ -17,9 +17,7 @@ export const addPostComment = async (hash, userId, postId, content) => {
     await addComment(userId, postId, content);
     const post = await getPost(postId);
 
-    const comments = await getComments(postId);
-
-    const CommentsWithAuthor = await getPostCommentsWithAuthor(postId);
+    const commentsWithAuthor = await getPostCommentsWithAuthor(postId);
     //Успешная регистрация
     return {
         error: null,
